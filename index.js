@@ -18,8 +18,16 @@ const path = require("path");
 
 dotenv.config();
 
-mongoose.connect('mongodb+srv://krishnabisht:Cr5Y$L*D@cluster0.dr0ghi5.mongodb.net/')
-.then(()=> console.log("connected!"));
+const mongoURI = process.env.Mongo_URL;
+
+if (!mongoURI) {
+  console.error('MongoDB connection string is not defined');
+  process.exit(1);
+}
+
+mongoose.connect(mongoURI)
+.then(()=> console.log("connected!"))
+.catch(err => console.error("Failed to connect to MongoDB:", err));
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
