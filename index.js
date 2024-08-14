@@ -3,7 +3,7 @@ const app = express();
 
 const cors = require('cors');
 
-app.use(cors({origin : 'https://s0cialize.onrender.com/' }));
+app.use(cors({origin : 'https://s0cialize.onrender.com' }));
 
 
 const mongoose = require("mongoose");
